@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='../fullcalendar.css' rel='stylesheet' />
+<link href='../fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='../lib/moment.min.js'></script>
+<script src='../lib/jquery.min.js'></script>
+<script src='../fullcalendar.min.js'></script>
+<script src='../lib/jquery-ui.custom.min.js'></script>
+<script>
+
+	$(document).ready(function() {
+		$calendar = $('#calendar').fullCalendar({
+	        header: {
+	            left: 'prev,next today',
+	            center: 'title',
+	            right: 'month,agendaWeek,agendaDay'
+	        },
+	           // defaultDate: '2016-01-12',
+	            selectable: true,
+				select: function(){
+					$('#dialog').dialog({
+						modal:true,
+						zIndex: 500,
+					});
+				}
+				/*select: function(start,jsEvent, view){
+					var allDay = !start;
+					alert("Il giorno da te selezionato è : "+moment(start).format('LL'));
+				}*/
+		});
+	});
+
+</script>
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	.ui-widget-header, .ui-state-default, ui-button{
+        background:  #CC0000; /*#b9cd6d;*/
+        border: 1px solid #b9cd6d;
+        color: #FFFFFF;
+        font-weight: bold;
+      }
+	
+	.ui-dialog{
+		z-index: 500;
+	}
+	
+	.ui-dialog-content{
+		background: #969696;
+		border: 1px solid #b9cd6d;
+	}
+	
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+</style>
+</head>
+<body> 
+	<div id='dialog' title='Prenotazione' style="display: none; z-index: 1000;">
+	</div>
+	<div id='calendar'></div>
+</body>
+</html>
